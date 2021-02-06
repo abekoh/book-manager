@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { bookSlice } from './redux/slices/book-slice';
+
+const store = configureStore({
+  reducer: bookSlice.reducer,
+  middleware: [...getDefaultMiddleware({ thunk: false })],
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root'),
 );
 
