@@ -1,6 +1,6 @@
 import { Book } from '../domains/models/books';
 
-const books: Book[] = [
+const staticBooks: Book[] = [
   {
     title: 'ドメイン駆動設計入門',
     subtitle: 'ボトムアップでわかる！ドメイン駆動設計の基本',
@@ -26,4 +26,4 @@ const books: Book[] = [
   },
 ];
 
-export default books;
+export default staticBooks;
