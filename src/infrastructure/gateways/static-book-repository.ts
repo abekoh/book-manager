@@ -28,7 +28,10 @@ const staticBooks: Book[] = [
 ];
 
 class StaticBookRepository implements IBookRepository {
-  getBooks: () => Book[] = () => staticBooks;
+  getBooks: () => Promise<Book[]> = () =>
+    new Promise((resolve) => {
+      resolve(staticBooks);
+    });
 }
 
 export default StaticBookRepository;

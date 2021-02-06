@@ -1,7 +1,11 @@
 import { FC } from 'react';
-import staticBooks from '../../data/staticBooks';
 import BookList from '../../components/organisms/BookList';
+import useGetBooks from '../../redux/hooks/use-get-books';
 
-const EnhancedBookList: FC = () => <BookList books={staticBooks} />;
+const EnhancedBookList: FC = () => {
+  const { books } = useGetBooks();
+
+  return <BookList books={books} />;
+};
 
 export default EnhancedBookList;

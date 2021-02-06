@@ -1,7 +1,7 @@
 import { Book } from '../models/book';
 
 interface IBookRepository {
-  getBooks: () => Book[];
+  getBooks: () => Promise<Book[]>;
 }
 
 export default IBookRepository;
