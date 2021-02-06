@@ -1,4 +1,4 @@
-import { Book } from '../domains/models/books';
+import { Book } from '../domain/models/book';
 
 const staticBooks: Book[] = [
   {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
-import { Book } from '../../domains/models/books';
+import { Book } from '../../domain/models/book';
 
 const BookLine: FC<{ book: Book }> = ({ book }) => (
   <>
