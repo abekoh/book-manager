@@ -1,4 +1,4 @@
-import IBookRepository from '../../domain/repositories/book-repository';
+import { IBookRepository } from '../../domain/repositories/book-repository';
 import { Book } from '../../domain/models/book';
 
 const staticBooks: Book[] = [
@@ -27,11 +27,8 @@ const staticBooks: Book[] = [
   },
 ];
 
-class StaticBookRepository implements IBookRepository {
-  getBooks: () => Promise<Book[]> = () =>
-    new Promise((resolve) => {
-      resolve(staticBooks);
-    });
-}
+const StaticBookRepository: IBookRepository = {
+  getBooks: () => Promise.resolve(staticBooks),
+};
 
 export default StaticBookRepository;
