@@ -7,8 +7,8 @@ const BookDetail: FC<{ book: Book }> = ({ book }) => (
     <Card>
       <CardContent>
         <Typography>{book.title}</Typography>
-        <Typography>{book.price}</Typography>
         {book.subtitle && <Typography>{book.subtitle}</Typography>}
+        <Typography>{book.price}</Typography>
       </CardContent>
     </Card>
   </>
