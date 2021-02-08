@@ -3,6 +3,7 @@ import { Book } from '../../domain/models/book';
 
 const staticBooks: Book[] = [
   {
+    id: 1,
     title: 'ドメイン駆動設計入門',
     subtitle: 'ボトムアップでわかる！ドメイン駆動設計の基本',
     price: 3520,
@@ -11,6 +12,7 @@ const staticBooks: Book[] = [
     isCompleted: true,
   },
   {
+    id: 2,
     title: 'リファクタリング',
     subtitle: '既存のコードを安全に改善する',
     price: 4840,
@@ -19,6 +21,7 @@ const staticBooks: Book[] = [
     isCompleted: false,
   },
   {
+    id: 3,
     title: 'マイクロサービスアーキテクチャ',
     price: 3740,
     url: 'https://www.oreilly.co.jp/books/9784873117607/',
