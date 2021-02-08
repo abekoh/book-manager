@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
@@ -13,11 +14,11 @@ const store = configureStore({
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </React.StrictMode>
-  </Provider>,
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 
