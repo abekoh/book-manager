@@ -25,9 +25,13 @@ const BooksPage: FC = () => {
 
   return (
     <Container maxWidth="sm">
-      <Grid container direction="column" justifyContent="center">
-        <BookList />
-        <AddButton />
+      <Grid container direction="column" justifyContent="center" spacing={2}>
+        <Grid item textAlign="center">
+          <AddButton />
+        </Grid>
+        <Grid item>
+          <BookList />
+        </Grid>
       </Grid>
     </Container>
   );

@@ -6,7 +6,9 @@ import BookTag from '../atoms/BookTag';
 const BookTagList: FC<{ tags: Tag[] }> = ({ tags }) => (
   <Grid container direction="row">
     {tags.map((tag) => (
-      <BookTag tag={tag} />
+      <Grid item>
+        <BookTag tag={tag} />
+      </Grid>
     ))}
   </Grid>
 );
