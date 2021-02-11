@@ -8,15 +8,15 @@ export type Props = {
   isLoading?: boolean;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BookList: FC<Props> = ({ books = [], isLoading = false }) => (
-  <div>
-    {isLoading}
+  <Grid item>
     <Grid container xs={12} direction="column" spacing={1}>
       {books.map((book) => (
         <BookLine key={book.id} book={book} />
       ))}
     </Grid>
-  </div>
+  </Grid>
 );
 
 export default BookList;
