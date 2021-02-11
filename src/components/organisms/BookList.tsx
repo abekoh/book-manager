@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { List, ListItem } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 import { Book } from '../../domain/models/book';
 import BookLine from '../molecules/BookLine';
 
@@ -12,15 +11,11 @@ export type Props = {
 const BookList: FC<Props> = ({ books = [], isLoading = false }) => (
   <div>
     {isLoading}
-    <List>
+    <Grid container xs={12} direction="column" spacing={1}>
       {books.map((book) => (
-        <Link to={`/books/${book.id}`}>
-          <ListItem button key={book.id}>
-            <BookLine book={book} />
-          </ListItem>
-        </Link>
+        <BookLine key={book.id} book={book} />
       ))}
-    </List>
+    </Grid>
   </div>
 );
 
