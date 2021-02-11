@@ -1,18 +1,18 @@
 import { FC } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import useGetBooks from '../../redux/hooks/use-get-books';
-import BookDetail from '../../components/molecules/BookDetail';
+import BookDetailTemplate from '../../components/templates/BookDetailTemplate';
 
-const EnhancedBookDetail: FC = () => {
+const EnhancedBookDetailTemplate: FC = () => {
   const { books } = useGetBooks();
   const { bookId } = useParams();
 
   const targetBook = books.find((book) => book.id.toString() === bookId);
-  if (targetBook) {
-    return <BookDetail book={targetBook} />;
+  if (!targetBook) {
+    return <Navigate to="/books" />;
   }
 
-  return <Navigate to="/books" />;
+  return <BookDetailTemplate book={targetBook} />;
 };
 
-export default EnhancedBookDetail;
+export default EnhancedBookDetailTemplate;
