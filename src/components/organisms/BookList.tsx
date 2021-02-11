@@ -10,18 +10,18 @@ export type Props = {
 };
 
 const BookList: FC<Props> = ({ books = [], isLoading = false }) => (
-  <>
+  <div>
     {isLoading}
     <List>
       {books.map((book) => (
-        <ListItem key={book.id}>
-          <Link to={`/books/${book.id}`}>
+        <Link to={`/books/${book.id}`}>
+          <ListItem button key={book.id}>
             <BookLine book={book} />
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
       ))}
     </List>
-  </>
+  </div>
 );
 
 export default BookList;

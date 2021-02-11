@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from '@emotion/react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { bookSlice } from './redux/slices/book-slice';
+import theme from './theme';
 
 const store = configureStore({
   reducer: bookSlice.reducer,
@@ -16,7 +19,10 @@ const store = configureStore({
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root'),

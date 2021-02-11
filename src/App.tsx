@@ -7,9 +7,9 @@ import BookDetail from './containers/molecules/BookDetail';
 const App: FC = () => (
   <>
     <Routes>
-      <Route path='books'>
-        <Route path='/' element={<BookList />} />
-        <Route path=':bookId' element={<BookDetail />} />
+      <Route path="books">
+        <Route path="/" element={<BookList />} />
+        <Route path=":bookId" element={<BookDetail />} />
       </Route>
       <Route path="*" element={<Navigate to="/books" />} />
     </Routes>
