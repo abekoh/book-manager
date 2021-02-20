@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Book } from '../../domain/models/book';
 import { bookSlice, BookState } from '../slices/book-slice';
-import StaticBookRepository from '../../infrastructure/gateways/static-book-repository';
 import { IBookRepository } from '../../domain/repositories/book-repository';
+import FirestoreBookRepository from '../../infrastructure/gateways/firestore-book-repository';
 
 type ReturnValue = {
   books: Book[];
@@ -14,7 +14,11 @@ const useGetBooks = (): ReturnValue => {
   const [isLoading, setIsLoading] = useState(false);
   const books = useSelector<BookState, Book[]>((state) => state.books);
   const dispatch = useDispatch();
-  const repository: IBookRepository = useMemo(() => StaticBookRepository, []);
+  // const repository: IBookRepository = useMemo(() => StaticBookRepository, []);
+  const repository: IBookRepository = useMemo(
+    () => FirestoreBookRepository,
+    [],
+  );
 
   useEffect(() => {
     let isUnmounted = false;
