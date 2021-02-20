@@ -32,6 +32,8 @@ const staticBooks: Book[] = [
 
 const StaticBookRepository: IBookRepository = {
   getBooks: () => Promise.resolve(staticBooks),
+  getOneBook: (id) =>
+    Promise.resolve(staticBooks.find((book) => book.id === id)),
 };
 
 export default StaticBookRepository;
