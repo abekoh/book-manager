@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { IBookRepository } from '../../domain/repositories/book-repository';
 import { Book } from '../../domain/models/book';
+import db from './firebase';
 
 type QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
 
