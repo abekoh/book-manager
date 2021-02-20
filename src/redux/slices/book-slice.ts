@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { uuid } from 'uuidv4';
 import { Book } from '../../domain/models/book';
 
 export type BookState = { books: Book[] };
@@ -14,5 +15,9 @@ export const bookSlice = createSlice({
       isLoading: false,
       error: null,
     }),
+    addBook: (state: BookState, action: PayloadAction<Omit<Book, 'id'>>) => {
+      const id = uuid();
+      state.books.push({ ...action.payload, id });
+    },
   },
 });
