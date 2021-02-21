@@ -18,7 +18,7 @@ import {
   TextField,
   Theme,
 } from '@material-ui/core';
-import { Book, BookWithoutId, TAG_PRESETS } from '../../domain/models/book';
+import { BookWithoutId, TAG_PRESETS } from '../../domain/models/book';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,10 +31,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  submitBook: (book: BookWithoutId) => void;
+  book: BookWithoutId;
+  setBook: (book: BookWithoutId) => void;
+  submitBook: () => void;
 };
 
-const BookNew: FC<Props> = ({ submitBook = () => undefined }) => {
+const BookNew: FC<Props> = ({ book, setBook, submitBook }) => {
   const classes = useStyles();
   const [tags, setTags] = useState<string[]>([]);
 
@@ -42,11 +44,18 @@ const BookNew: FC<Props> = ({ submitBook = () => undefined }) => {
     setTags(event.target.value as string[]);
   };
 
-  const submit = () => {
-    const book: BookWithoutId = {
-      title:
+  const handleInputChange = (
+    event: ChangeEvent<{ name: string; value: unknown }>,
+  ) => {
+    const newBook: BookWithoutId = {
+      ...book,
+      [event.target.name]: event.target.value,
     };
-    submitBook(book);
+    setBook(newBook);
+  };
+
+  const handleSubmit = () => {
+    submitBook();
   };
 
   return (
@@ -55,24 +64,41 @@ const BookNew: FC<Props> = ({ submitBook = () => undefined }) => {
         <form className={classes.root}>
           <Grid container direction="column" spacing={1}>
             <Grid item>
-              <TextField id="title" label="タイトル" />
+              <TextField
+                id="title"
+                name="title"
+                label="タイトル"
+                onChange={handleInputChange}
+              />
             </Grid>
             <Grid item>
-              <TextField id="subtitle" label="サブタイトル" />
+              <TextField
+                id="subtitle"
+                name="subtitle"
+                label="サブタイトル"
+                onChange={handleInputChange}
+              />
             </Grid>
             <Grid item>
               <TextField
                 id="price"
+                name="price"
                 label="値段"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">￥</InputAdornment>
                   ),
                 }}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item>
-              <TextField id="url" label="URL" />
+              <TextField
+                id="url"
+                name="url"
+                label="URL"
+                onChange={handleInputChange}
+              />
             </Grid>
             <Grid item>
               <FormControl id="tags">
@@ -100,12 +126,22 @@ const BookNew: FC<Props> = ({ submitBook = () => undefined }) => {
             </Grid>
             <Grid item>
               <FormControlLabel
-                control={<Checkbox checked={false} color="primary" />}
+                control={
+                  <Checkbox
+                    checked={false}
+                    color="primary"
+                    onChange={handleInputChange}
+                  />
+                }
                 label="読了"
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+              >
                 本を追加
               </Button>
             </Grid>
