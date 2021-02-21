@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { uuid } from 'uuidv4';
 import { Book } from '../../domain/models/book';
 
 export type BookState = { books: Book[] };

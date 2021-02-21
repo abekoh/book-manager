@@ -8,6 +8,8 @@ export type Book = {
   isCompleted: boolean;
 };
 
+export type BookWithoutId = Omit<Book, 'id'>;
+
 export type Tag = {
   name: string;
 };

@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { cachedDataVersionTag } from 'v8';
 import { IBookRepository } from '../../domain/repositories/book-repository';
 import { Book } from '../../domain/models/book';
 import db from './firebase';
