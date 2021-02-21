@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { cachedDataVersionTag } from 'v8';
 import { IBookRepository } from '../../domain/repositories/book-repository';
 import { Book } from '../../domain/models/book';
 import db from './firebase';
@@ -14,7 +15,7 @@ type BookDoc = {
   isCompleted: boolean;
 };
 
-const toBook = (id: string, bookDoc: BookDoc) => ({
+const toBook = (id: string, bookDoc: BookDoc): Book => ({
   id,
   title: bookDoc.title,
   subtitle: bookDoc.subtitle,
@@ -24,6 +25,15 @@ const toBook = (id: string, bookDoc: BookDoc) => ({
     name: str,
   })),
   isCompleted: bookDoc.isCompleted,
+});
+
+const toBookDoc = (book: Book): BookDoc => ({
+  title: book.title,
+  subtitle: book.subtitle,
+  price: book.price,
+  url: book.url,
+  tags: book.tags.map((tag) => tag.name),
+  isCompleted: book.isCompleted,
 });
 
 const FirestoreBookRepository: IBookRepository = {
@@ -44,6 +54,11 @@ const FirestoreBookRepository: IBookRepository = {
     return data
       ? Promise.resolve(toBook(id, data))
       : Promise.resolve(undefined);
+  },
+  setBook: (book) => {
+    const ref = db.collection('books').doc(book.id);
+
+    return ref.set(toBookDoc(book));
   },
 };
 export default FirestoreBookRepository;

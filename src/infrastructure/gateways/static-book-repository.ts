@@ -34,6 +34,7 @@ const StaticBookRepository: IBookRepository = {
   getBooks: () => Promise.resolve(staticBooks),
   getOneBook: (id) =>
     Promise.resolve(staticBooks.find((book) => book.id === id)),
+  setBook: (_) => Promise.resolve(),
 };
 
 export default StaticBookRepository;
