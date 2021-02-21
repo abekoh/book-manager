@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC } from 'react';
 import {
   Button,
   Card,
@@ -18,7 +18,7 @@ import {
   TextField,
   Theme,
 } from '@material-ui/core';
-import { BookWithoutId, TAG_PRESETS } from '../../domain/models/book';
+import { BookForm, TAG_PRESETS } from '../../domain/models/book';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,26 +31,28 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  book: BookWithoutId;
-  setBook: (book: BookWithoutId) => void;
+  book: BookForm;
+  setBook: (book: BookForm) => void;
   submitBook: () => void;
 };
 
 const BookNew: FC<Props> = ({ book, setBook, submitBook }) => {
   const classes = useStyles();
-  const [tags, setTags] = useState<string[]>([]);
-
-  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    setTags(event.target.value as string[]);
-  };
 
   const handleInputChange = (
-    event: ChangeEvent<{ name: string; value: unknown }>,
+    event: ChangeEvent<{ name?: string; value: unknown }>,
   ) => {
-    const newBook: BookWithoutId = {
+    // eslint-disable-next-line no-console
+    console.log(event.target);
+    if (!event.target.name) {
+      return;
+    }
+    const newBook: BookForm = {
       ...book,
       [event.target.name]: event.target.value,
     };
+    // eslint-disable-next-line no-console
+    console.log(newBook);
     setBook(newBook);
   };
 
@@ -105,13 +107,13 @@ const BookNew: FC<Props> = ({ book, setBook, submitBook }) => {
                 <InputLabel>タグ</InputLabel>
                 <Select
                   multiple
-                  input={<Input id="tags" />}
-                  value={tags}
-                  onChange={handleChange}
-                  renderValue={(selected) => (
+                  input={<Input id="tags" name="tags" />}
+                  value={book.tags}
+                  onChange={handleInputChange}
+                  renderValue={(selectedTag: string[]) => (
                     <div>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
+                      {selectedTag.map((tag) => (
+                        <Chip key={tag} label={tag} />
                       ))}
                     </div>
                   )}

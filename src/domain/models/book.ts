@@ -8,10 +8,17 @@ export type Book = {
   isCompleted: boolean;
 };
 
-export type BookWithoutId = Omit<Book, 'id'>;
-
 export type Tag = {
   name: string;
+};
+
+export type BookForm = {
+  title: string;
+  subtitle?: string;
+  price: number;
+  url?: string;
+  tags: string[];
+  isCompleted: boolean;
 };
 
 export const TAG_PRESETS = ['設計', 'DDD'] as const;
