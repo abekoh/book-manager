@@ -1,10 +1,13 @@
 import { ChangeEvent, FC, useState } from 'react';
 import {
+  Button,
   Card,
   CardContent,
+  Checkbox,
   Chip,
   createStyles,
   FormControl,
+  FormControlLabel,
   Grid,
   Input,
   InputAdornment,
@@ -61,10 +64,9 @@ const BookNew: FC = () => {
               <TextField id="url" label="URL" />
             </Grid>
             <Grid item>
-              <FormControl>
+              <FormControl id="tags">
                 <InputLabel>タグ</InputLabel>
                 <Select
-                  id="tags"
                   multiple
                   input={<Input id="tags" />}
                   value={tags}
@@ -84,6 +86,17 @@ const BookNew: FC = () => {
                   ))}
                 </Select>
               </FormControl>
+            </Grid>
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox checked={false} color="primary" />}
+                label="読了"
+              />
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="primary">
+                本を追加
+              </Button>
             </Grid>
           </Grid>
         </form>
