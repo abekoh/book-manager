@@ -15,9 +15,5 @@ export const bookSlice = createSlice({
       isLoading: false,
       error: null,
     }),
-    addBook: (state: BookState, action: PayloadAction<Omit<Book, 'id'>>) => {
-      const id = uuid();
-      state.books.push({ ...action.payload, id });
-    },
   },
 });
