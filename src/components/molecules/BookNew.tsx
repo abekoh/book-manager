@@ -18,7 +18,7 @@ import {
   TextField,
   Theme,
 } from '@material-ui/core';
-import { TAG_PRESETS } from '../../domain/models/book';
+import { Book, BookWithoutId, TAG_PRESETS } from '../../domain/models/book';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,12 +30,23 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BookNew: FC = () => {
+type Props = {
+  submitBook: (book: BookWithoutId) => void;
+};
+
+const BookNew: FC<Props> = ({ submitBook = () => undefined }) => {
   const classes = useStyles();
   const [tags, setTags] = useState<string[]>([]);
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
     setTags(event.target.value as string[]);
+  };
+
+  const submit = () => {
+    const book: BookWithoutId = {
+      title:
+    };
+    submitBook(book);
   };
 
   return (
