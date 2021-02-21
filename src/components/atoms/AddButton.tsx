@@ -1,11 +1,14 @@
 import { FC } from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
-const AddButton: FC = () => (
-  <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-    追加
-  </Button>
+const AddButton: FC<{ label: string; path: string }> = ({ label, path }) => (
+  <Link to={path}>
+    <Button variant="contained" color="primary" startIcon={<AddIcon />}>
+      {label}
+    </Button>
+  </Link>
 );
 
 export default AddButton;

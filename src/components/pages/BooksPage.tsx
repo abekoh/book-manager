@@ -27,7 +27,7 @@ const BooksPage: FC = () => {
     <Container maxWidth="sm">
       <Grid container direction="column" justifyContent="center" spacing={2}>
         <Grid item textAlign="center">
-          <AddButton />
+          <AddButton label="追加" path="/books/new" />
         </Grid>
         <Grid item>
           <BookList />
