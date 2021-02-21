@@ -10,10 +10,10 @@ export type Props = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BookList: FC<Props> = ({ books = [], isLoading = false }) => (
-  <Grid container xs={12} direction="column" spacing={1}>
+  <Grid container direction="column" spacing={1}>
     {books.map((book) => (
-      <Grid item>
-        <BookLine key={book.id} book={book} />
+      <Grid item key={book.id}>
+        <BookLine book={book} />
       </Grid>
     ))}
   </Grid>
