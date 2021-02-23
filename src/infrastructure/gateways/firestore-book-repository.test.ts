@@ -1,6 +1,6 @@
 import FirestoreBookRepository from './firestore-book-repository';
 
-jest.mock('./firestore', () => ({
+jest.mock('./firestore-db', () => ({
   collection: () => ({
     get: jest.fn(() =>
       Promise.resolve({
