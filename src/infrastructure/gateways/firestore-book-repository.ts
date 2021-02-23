@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { IBookRepository } from '../../domain/repositories/book-repository';
 import { Book } from '../../domain/models/book';
-import db from './firebase';
+import db from './firestore';
 
 type QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
 
@@ -37,7 +37,8 @@ const toBookDoc = (book: Book): BookDoc => ({
 
 const FirestoreBookRepository: IBookRepository = {
   getBooks: async () => {
-    const snapShot = await db.collection('books').get();
+    const collection = db.collection('books');
+    const snapShot = await collection.get();
     const result: Book[] = snapShot.docs.map((doc: QueryDocumentSnapshot) => {
       const data = doc.data() as BookDoc;
 
