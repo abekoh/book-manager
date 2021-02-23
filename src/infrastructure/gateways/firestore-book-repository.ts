@@ -37,8 +37,7 @@ const toBookDoc = (book: Book): BookDoc => ({
 
 const FirestoreBookRepository: IBookRepository = {
   getBooks: async () => {
-    const collection = db.collection('books');
-    const snapShot = await collection.get();
+    const snapShot = await db.collection('books').get();
     const result: Book[] = snapShot.docs.map((doc: QueryDocumentSnapshot) => {
       const data = doc.data() as BookDoc;
 
