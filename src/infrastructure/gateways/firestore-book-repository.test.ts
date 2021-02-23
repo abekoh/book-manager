@@ -1,7 +1,7 @@
-import FirestoreBookRepository from './firestore-book-repository';
+import FirestoreBookRepository, { BookDoc } from './firestore-book-repository';
 import { Book } from '../../domain/models/book';
 
-const sampleDataFunc = () => ({
+const sampleDataFunc: () => BookDoc = () => ({
   title: 'ドメイン駆動設計入門',
   subtitle: 'ボトムアップでわかる！ドメイン駆動設計の基本',
   price: 3520,

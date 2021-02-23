@@ -5,7 +5,7 @@ import db from './firestore-db';
 
 type QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
 
-type BookDoc = {
+export type BookDoc = {
   title: string;
   subtitle?: string;
   price: number;
